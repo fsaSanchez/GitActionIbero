@@ -1,0 +1,43 @@
+.divider {
+    height: 2px;
+    background-color: red;
+    margin: 20px 0;
+    position: relative;
+  }
+
+  .services-title {
+    color: white;
+    background-color: red;
+    position: relative;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 10px;
+  }
+
+  .service-icon {
+    text-align: center;
+  }
+
+  .icon-text {
+    margin-top: 5px;
+  }
+
+  .search-section {
+    background-image: url('https://ibero.mx/sites/default/files/prensaymultimedios/ibero_9.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 90px;
+    color: white;
+  }
+
+  .largeIcon {
+    font-size: 2em; /* Ajusta el tamaño según sea necesario */
+    color: red; /* Cambia el color a rojo */
+    cursor: pointer; /* Cambia el cursor a pointer */
+    transition: transform 0.2s; /* Agrega una transición para el efecto de crecimiento */
+  }
+  
+  .largeIcon:hover {
+    transform: scale(1.1); /* Escala un poco más cuando pasa el mouse */
+  }
