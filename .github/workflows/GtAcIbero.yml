@@ -1,31 +1,20 @@
-name: Deploy React App to IIS via Ngrok
+name: Deploy to Local Server via Ngrok
 
 on:
   push:
     branches:
-      - main  # Ajusta según tu flujo
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Clonar el repositorio
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # 2. Crear el build de la aplicación React
-      - name: Install dependencies and build React app
-        run: |
-          npm install
-          npm run build
-
-      # 3. Crear un archivo ZIP con el build
-      - name: Archive build folder
-        run: |
-          zip -r build.zip ./build
-
-      # 4. Subir el build ZIP al servidor IIS expuesto por Ngrok
-      - name: Upload build to IIS via Ngrok
-        run: |
-          curl -X POST -F "file=@build.zip" "http://localhost:8088/upload"
+    - name: Deploy to Local IIS via Ngrok
+      run: |
+        curl -X POST ${{ secrets.NGROK_URL }}/deploy -H "Content-Type: application/json" -d '{
+          "command": "git pull origin main && iisreset"
+        }'
