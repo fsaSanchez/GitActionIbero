@@ -25,8 +25,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh -o StrictHostKeyChecking=no hp-envy@192.168.3.180 "rm -rf /inetpub/DeployActions/*"
-          scp -r ./build/* hp-envy@192.168.3.180:/inetpub/DeployActions/
+          ssh -o StrictHostKeyChecking=no hp-envy@129.222.64.75 "rm -rf /inetpub/DeployActions/*"
+          scp -r ./build/* hp-envy@129.222.64.75:/inetpub/DeployActions/
 
       - name: Restart IIS (optional)
         run: |
