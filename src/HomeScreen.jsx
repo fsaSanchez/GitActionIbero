@@ -68,7 +68,7 @@ export const HomeScreen = ({ setIsLoggedIn }) => {
       <hr className="my-4 divider" />
       <div className="row mt-4">
         <div className="col-12">
-          <h2 className="services-title text-center">Servicios Escolares Hoy es martes</h2>
+          <h2 className="services-title text-center">Servicios Escolares Hoy es martes 29</h2>
         </div>
       </div>
       <div className="row mt-4">
