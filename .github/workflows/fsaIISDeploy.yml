@@ -25,7 +25,7 @@ jobs:
       run: npm run build
 
     - name: List files for debugging
-      run: ls -la && ls -la build
+      run: ls -la && ls -la dist || echo "Dist directory not found"
 
     - name: Install sshpass
       run: sudo apt-get install -y sshpass
@@ -35,4 +35,4 @@ jobs:
         WIN_USERNAME: ${{ secrets.WIN_USERNAME }}
         WIN_PASSWORD: ${{ secrets.WIN_PASSWORD }}
       run: |
-        sshpass -p "$WIN_PASSWORD" scp -P 15112 -o StrictHostKeyChecking=no -r build/* "$WIN_USERNAME"@0.tcp.ngrok.io:/inetpub/DeployActions
+        sshpass -p "$WIN_PASSWORD" scp -P 15112 -o StrictHostKeyChecking=no -r dist/* "$WIN_USERNAME"@0.tcp.ngrok.io:/inetpub/DeployActions
