@@ -24,13 +24,12 @@ jobs:
     - name: Build React app
       run: npm run build
 
-    - name: Add SSH key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-      shell: bash
+    - name: Install sshpass
+      run: sudo apt-get install -y sshpass
 
-    - name: Copy files to IIS server via SSH
+    - name: Copy files to IIS server via SSH with password
+      env:
+        WIN_USERNAME: ${{ secrets.WIN_USERNAME }}
+        WIN_PASSWORD: ${{ secrets.WIN_PASSWORD }}
       run: |
-        scp -P 15112 -r build/* hp-envy@0.tcp.ngrok.io:/inetpub/DeployActions
+        sshpass -p "$WIN_PASSWORD" scp -P 15112 -o StrictHostKeyChecking=no -r build/* "$WIN_USERNAME"@0.tcp.ngrok.io:/inetpub/DeployActions
