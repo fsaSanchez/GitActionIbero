@@ -1,0 +1,36 @@
+name: Deploy React to IIS
+
+on:
+  push:
+    branches:
+      - main  # Cambia según tu rama principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Add SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+        chmod 600 ~/.ssh/id_rsa
+      shell: bash
+
+    - name: Copy files to IIS server via SSH
+      run: |
+        scp -P 12345 -r build/* hp-envy@0.tcp.ngrok.io:/inetpub/DeployActions
