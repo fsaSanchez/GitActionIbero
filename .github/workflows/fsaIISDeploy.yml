@@ -31,10 +31,6 @@ jobs:
         chmod 600 ~/.ssh/id_ed25519
       shell: bash
 
-    - name: Disable SSH host key checking
-      run: |
-        echo "StrictHostKeyChecking no" >> ~/.ssh/config
-
     - name: Copy files to IIS server via SSH
       run: |
         scp -P 15112 -r build/* hp-envy@0.tcp.ngrok.io:/inetpub/DeployActions
