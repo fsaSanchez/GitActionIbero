@@ -33,4 +33,4 @@ jobs:
 
     - name: Copy files to IIS server via SSH
       run: |
-        scp -P 12345 -r build/* hp-envy@0.tcp.ngrok.io:/inetpub/DeployActions
+        scp -P 12345 -r build/* hp-envy@tcp://6.tcp.ngrok.io:/inetpub/DeployActions
