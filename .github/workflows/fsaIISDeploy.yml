@@ -41,4 +41,4 @@ jobs:
       run: |
        curl -H 'Content-Type: application/json' \
          -d '{"text":"El despliegue ha sido completado exitosamente."}' \
-         https://teams.microsoft.com/l/channel/19%3AVNaRCRTYNGk6XiEjacS_wDeZ_58Tqzx1ZLGNFSZ01n41%40thread.tacv2/General?groupId=b69cf58a-145e-4bc3-a475-640753321d68&tenantId=40152134-6f8a-46f7-bc22-240f7c7c2455
+        https://teams.microsoft.com/l/channel/19%3AVNaRCRTYNGk6XiEjacS_wDeZ_58Tqzx1ZLGNFSZ01n41%40thread.tacv2/General?groupId=b69cf58a-145e-4bc3-a475-640753321d68
