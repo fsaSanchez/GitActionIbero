@@ -35,7 +35,7 @@ jobs:
         WIN_USERNAME: ${{ secrets.WIN_USERNAME }}
         WIN_PASSWORD: ${{ secrets.WIN_PASSWORD }}
       run: |
-        sshpass -p "$WIN_PASSWORD" scp -P 15112 -o StrictHostKeyChecking=no -r dist/* "$WIN_USERNAME"@0.tcp.ngrok.io:/inetpub/DeployActions
+        sshpass -p "$WIN_PASSWORD" scp -P 19231 -o StrictHostKeyChecking=no -r dist/* "$WIN_USERNAME"@4.tcp.ngrok.io:/inetpub/DeployActions
 
     - name: Notify Teams
       run: |
