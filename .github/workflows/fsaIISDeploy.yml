@@ -40,5 +40,5 @@ jobs:
     - name: Notify Teams
       run: |
        curl -H 'Content-Type: application/json' \
-         -d '{"text":"El despliegue ha sido completado exitosamente."}' \
+         -d '{"text":"El despliegue de ${{ vars.NOMBRE_PROYECTO }} ha sido completado exitosamente en el servidor IIS desde git hub"}' \
         https://iberomx.webhook.office.com/webhookb2/b69cf58a-145e-4bc3-a475-640753321d68@40152134-6f8a-46f7-bc22-240f7c7c2455/IncomingWebhook/8ab337806a4f48a6bac8364964376f87/cfafb0dc-c85f-48b5-b351-7987e37a8b4c/V25b0WXu1B_fsmLHVdlXEEtWZp1mybiHnxBRsA8DOw8S81
