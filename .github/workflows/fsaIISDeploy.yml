@@ -36,3 +36,9 @@ jobs:
         WIN_PASSWORD: ${{ secrets.WIN_PASSWORD }}
       run: |
         sshpass -p "$WIN_PASSWORD" scp -P 15112 -o StrictHostKeyChecking=no -r dist/* "$WIN_USERNAME"@0.tcp.ngrok.io:/inetpub/DeployActions
+
+    - name: Notify Teams
+      run: |
+       curl -H 'Content-Type: application/json' \
+         -d '{"text":"El despliegue ha sido completado exitosamente."}' \
+         https://teams.microsoft.com/l/channel/19%3AVNaRCRTYNGk6XiEjacS_wDeZ_58Tqzx1ZLGNFSZ01n41%40thread.tacv2/?groupId=b69cf58a-145e-4bc3-a475-640753321d68
