@@ -10,24 +10,31 @@ jobs:
     runs-on: self-hosted  # Utiliza el runner auto-hospedado
 
     steps:
+    # Paso para hacer checkout del repositorio
     - name: Check out repository
       uses: actions/checkout@v3
 
-    # Configuración de Node.js con una versión más reciente, por ejemplo 18
+    # Agregar el repositorio a la lista de safe.directory de Git
+    - name: Add Git repository to safe.directory
+      run: |
+        git config --global --add safe.directory C:/actions-runner/_work/GitActionIbero/GitActionIbero
+
+    # Configuración de Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'  # Mejor usar una versión más reciente de Node.js
+        node-version: '18'
 
-    # Limpiar el cache de node_modules y reinstalar dependencias
+    # Instalación de dependencias
     - name: Install dependencies
       run: |
-        npm ci  # npm ci es más rápido y fiable para CI/CD ya que limpia node_modules
-    # Crear build del proyecto React
+        npm ci
+
+    # Construcción de la aplicación React
     - name: Build React app
       run: npm run build
 
-    # Listar archivos generados para debug (verificar dist)
+    # Listado de archivos generados
     - name: List files for debugging
       run: |
         ls -la
@@ -36,17 +43,19 @@ jobs:
         } else {
           ls -la dist
         }
-    # Asegurarte de que el directorio de destino existe antes de copiar
+
+    # Verificación de directorio de despliegue y copia de archivos
     - name: Ensure deployment directory exists
       run: |
         if (-not (Test-Path "C:\inetpub\DeployActions\")) {
           New-Item -Path "C:\inetpub\DeployActions\" -ItemType Directory
         }
-    # Copiar los archivos generados al servidor IIS
+
     - name: Copy files to IIS server
       run: |
         xcopy /E /I /Y dist\* C:\inetpub\DeployActions\
-    # Notificar por Teams al finalizar el despliegue
+
+    # Notificación de Teams
     - name: Notify Teams
       run: |
         curl -H 'Content-Type: application/json' \
