@@ -13,7 +13,7 @@ jobs:
     - name: Check out repository
       uses: actions/checkout@v3
 
-    # Configuración de Node.js con una versión más reciente, por ejemplo 18
+    # Configuración de Node.js con una versión más reciente, por ejemplo 184
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
