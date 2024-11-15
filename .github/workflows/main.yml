@@ -30,9 +30,20 @@ jobs:
 
     # Listar archivos generados para debug (verificar dist)
     - name: List files for debugging
+      shell: pwsh  # Usamos PowerShell (pwsh) explícitamente
       run: |
-        ls -la
-        ls -la dist || echo "Dist directory not found"
+        # Listar todos los archivos en el directorio de trabajo actual
+        Write-Host "Listing all files in the current directory:"
+        Get-ChildItem -Path . | Format-List *
+        
+        # Verificar si el directorio 'dist' existe y listar su contenido
+        if (Test-Path -Path 'dist') {
+          Write-Host "Dist directory found. Listing files in 'dist':"
+          Get-ChildItem -Path 'dist' | Format-List *
+        } else {
+          Write-Host "Dist directory not found"
+        }
+
 
     # Asegurarte de que el directorio de destino existe antes de copiar
     - name: Ensure deployment directory exists
