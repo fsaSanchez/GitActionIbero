@@ -23,27 +23,20 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci  # npm ci es más rápido y fiable para CI/CD ya que limpia node_modules
-
+        
     # Crear build del proyecto React
     - name: Build React app
       run: npm run build
 
     # Listar archivos generados para debug (verificar dist)
     - name: List files for debugging
-      shell: powershell  # Usamos Windows PowerShell
       run: |
-        # Listar todos los archivos en el directorio de trabajo actual
-        Write-Host "Listing all files in the current directory:"
-        Get-ChildItem -Path . | Format-List *
-        
-        # Verificar si el directorio 'dist' existe y listar su contenido
-        if (Test-Path -Path 'dist') {
-          Write-Host "Dist directory found. Listing files in 'dist':"
-          Get-ChildItem -Path 'dist' | Format-List *
-        } else {
+        ls -la
+        if (-Not (Test-Path dist)) {
           Write-Host "Dist directory not found"
+        } else {
+          ls -la dist
         }
-
 
     # Asegurarte de que el directorio de destino existe antes de copiar
     - name: Ensure deployment directory exists
@@ -51,12 +44,12 @@ jobs:
         if (-not (Test-Path "C:\inetpub\DeployActions\")) {
           New-Item -Path "C:\inetpub\DeployActions\" -ItemType Directory
         }
-
+        
     # Copiar los archivos generados al servidor IIS
     - name: Copy files to IIS server
       run: |
         xcopy /E /I /Y dist\* C:\inetpub\DeployActions\
-
+        
     # Notificar por Teams al finalizar el despliegue
     - name: Notify Teams
       run: |
