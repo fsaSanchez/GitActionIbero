@@ -30,7 +30,7 @@ jobs:
 
     # Listar archivos generados para debug (verificar dist)
     - name: List files for debugging
-      shell: pwsh  # Usamos PowerShell (pwsh) explícitamente
+      shell: powershell  # Usamos Windows PowerShell
       run: |
         # Listar todos los archivos en el directorio de trabajo actual
         Write-Host "Listing all files in the current directory:"
