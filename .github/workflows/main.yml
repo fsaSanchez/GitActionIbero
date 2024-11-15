@@ -23,7 +23,6 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci  # npm ci es más rápido y fiable para CI/CD ya que limpia node_modules
-        
     # Crear build del proyecto React
     - name: Build React app
       run: npm run build
@@ -37,19 +36,16 @@ jobs:
         } else {
           ls -la dist
         }
-
     # Asegurarte de que el directorio de destino existe antes de copiar
     - name: Ensure deployment directory exists
       run: |
         if (-not (Test-Path "C:\inetpub\DeployActions\")) {
           New-Item -Path "C:\inetpub\DeployActions\" -ItemType Directory
         }
-        
     # Copiar los archivos generados al servidor IIS
     - name: Copy files to IIS server
       run: |
         xcopy /E /I /Y dist\* C:\inetpub\DeployActions\
-        
     # Notificar por Teams al finalizar el despliegue
     - name: Notify Teams
       run: |
