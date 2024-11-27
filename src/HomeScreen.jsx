@@ -68,7 +68,7 @@ export const HomeScreen = ({ setIsLoggedIn }) => {
       <hr className="my-4 divider" />
       <div className="row mt-4">
         <div className="col-12">
-          <h2 className="services-title text-center">Sanchez</h2>
+          <h2 className="services-title text-center">Prueba Meneses</h2>
         </div>
       </div>
       <div className="row mt-4">
@@ -79,7 +79,7 @@ export const HomeScreen = ({ setIsLoggedIn }) => {
               className="d-flex flex-column align-items-center"
             >
               <i className="fas fa-random fa-3x" />
-              <span className="icon-text">Sitio 1</span>
+              <span className="icon-text">Primer 1</span>
             </a>
           </div>
         </div>
